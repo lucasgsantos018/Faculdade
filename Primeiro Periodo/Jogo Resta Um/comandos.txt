@@ -1,0 +1,16 @@
+b BD
+c ED
+d DB
+c DD
+b AD
+b BC
+d CA
+salvar saida.txt
+c DC
+b AC
+e CD
+c EA
+d CA
+d EB
+salvar saida.txt
+sair
