@@ -896,5 +896,3 @@ void setUpdateBlock(Block* bloco,bool update){
 void setEmptyBlock(Block* bloco, bool empty){
     bloco->empty = empty;
 }
-
-void tester(Block* bloco);
