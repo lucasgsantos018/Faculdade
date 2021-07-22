@@ -1,9 +1,3 @@
-//Nome: Lucas Gomes dos Santos
-//Matrícula: 20.1.4108
-//Turma: 43
-
-
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
