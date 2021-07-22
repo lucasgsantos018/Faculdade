@@ -13,9 +13,6 @@ typedef struct cache Cache;
 // bloco
 typedef struct block Block;
 
-
-
-
 // menu
 void Menu();
 
@@ -73,8 +70,6 @@ void setUpdateBlock(Block* bloco,bool update);
 void setEmptyBlock(Block* bloco, bool empty);
 
 
-
-
 int main()
 {
     srand(time(NULL));
@@ -84,8 +79,6 @@ int main()
 
 
 // menu
-
-
 void Menu(){
 
   Cache* cacheL1 = NULL;
@@ -153,11 +146,7 @@ void Menu(){
 }
 
 
-
-
-
 // machine
-
 void maquina(int* ARITMETIC_memory, int** program){
 
     int pc = 0;
@@ -191,12 +180,7 @@ void maquina(int* ARITMETIC_memory, int** program){
 }
 
 
-
-
-
 // instructions
-
-
 int* criaAritmetica(int size){
     int* ARITMETIC_memory=malloc(size*sizeof(int));
     for (int i=0; i<size; i++){
@@ -334,14 +318,7 @@ int** ler_instrucoes(int* inst, bool *flag){
 }
 
 
-
-
-
-
 // cpu
-
-
-
 void CPU(Cache* RAM_memory, Cache* cacheL1, Cache* cacheL2, Cache* cacheL3, int* ARITMETIC_memory, int** instruction){
     int time=0;
     int pick=0;
@@ -642,12 +619,7 @@ int ALU(int* ARITMETIC_memory, int pick, int* one_problem, Cache* cacheL1, Cache
 }
 
 
-
-
-
-
 // cache
-
 struct cache{
     Block** bloco;
     int size;
@@ -839,12 +811,7 @@ void cache_show_statistic(Cache* cacheL1, Cache* cacheL2, Cache* cacheL3, Cache*
 }
 
 
-
-
-
-
 // bloco
-
 struct block{
     int* words;
     bool empty;
@@ -929,3 +896,5 @@ void setUpdateBlock(Block* bloco,bool update){
 void setEmptyBlock(Block* bloco, bool empty){
     bloco->empty = empty;
 }
+
+void tester(Block* bloco);
