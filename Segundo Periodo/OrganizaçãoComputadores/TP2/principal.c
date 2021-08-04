@@ -126,18 +126,17 @@ void maquinainterpretada (blocodememoria *cache1, blocodememoria *cache2, blocod
             }
             printf("|Segundo Valor na cache1 = %d|\n\n" , k);
             
-            /*mudancaDeValor(cache1, cache2, cache3, instrucao[i].end3, ram , cacheHit , cacheMiss , custoTotal, 0);
+            int valordaresposta;
+            mudancaDeValor(cache1, cache2, cache3, instrucao[i].end3, ram , cacheHit , cacheMiss , custoTotal, 0);
             for (int c = 0; c < tamcache1; c++) {
                 if (instrucao[i].end3 == cache1[c].endereco) {
+                    valordaresposta = c;
                     cache1[c].conteudo = n+k;
-                    printf("Soma: %d + %d = %d\n\n",n , k , cache1[c].conteudo);
-                    break;
                 }
             }
-            //cache1[eh_trocado(cache1, 1)].conteudo = n + k;
-            */
-           cache1[eh_trocado(cache1, 1)].conteudo = n + k;
-           printf("Soma: %d + %d = %d\n\n",n , k , cache1[eh_trocado(cache1, 1)].conteudo); 
+            printf("Soma: %d + %d = %d\n\n",n , k , cache1[valordaresposta].conteudo);
+
+         
 
         }
         if (instrucao[i].opcode == 1) { //subtracao
@@ -157,8 +156,15 @@ void maquinainterpretada (blocodememoria *cache1, blocodememoria *cache2, blocod
             printf("|Segundo Valor na cache1 = %d|\n\n" , k);
 
 
-            cache1[eh_trocado(cache1, 1)].conteudo = n - k;
-            printf("Subtracao: %d - %d = %d\n\n",n , k , cache1[eh_trocado(cache1, 1)].conteudo); 
+            int valordaresposta;
+            mudancaDeValor(cache1, cache2, cache3, instrucao[i].end3, ram , cacheHit , cacheMiss , custoTotal, 0);
+            for (int c = 0; c < tamcache1; c++) {
+                if (instrucao[i].end3 == cache1[c].endereco) {
+                    valordaresposta = c;
+                    cache1[c].conteudo = n-k;
+                }
+            }
+            printf("Subtracao: %d - %d = %d\n\n",n , k , cache1[valordaresposta].conteudo); 
 
         }
     }
