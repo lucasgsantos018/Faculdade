@@ -6,7 +6,7 @@
 #define tamcache1 16
 #define tamcache2 32
 #define tamcache3 64
-#define tamdasinstrucoes 100
+#define tamdasinstrucoes 20
 
 
 typedef struct {
@@ -50,6 +50,26 @@ int main() {
     instrucao lerinstrucoes[tamdasinstrucoes];
     inicialerinstrucoes(lerinstrucoes);
     maquinainterpretada (cache1, cache2, cache3, lerinstrucoes, ram , &cacheHit , &cacheMiss , &custoTotal);
+
+    for(int i = 0 ; i < tamcache1 ; i++)
+    {
+        printf("Endereço cache1: %d   valor na cache: %d     uso: %d         refresh: %d\n" , cache1[i].endereco , cache1[i].conteudo , cache1[i].uso , cache1[i].refresh);
+    }
+
+    for(int i = 0 ; i < tamcache2 ; i++)
+    {
+        printf("Endereço cache2: %d   valor na cache: %d     uso: %d         refresh: %d\n" , cache2[i].endereco , cache2[i].conteudo , cache2[i].uso , cache2[i].refresh);
+    }
+
+    for(int i = 0 ; i < tamcache3 ; i++)
+    {
+        printf("Endereço cache3: %d   valor na cache: %d     uso: %d         refresh: %d\n" , cache3[i].endereco , cache3[i].conteudo , cache3[i].uso , cache3[i].refresh);
+    }
+
+
+
+
+
     imprimirRelatorio(cacheHit,cacheMiss,custoTotal);
     return 0;
 }
@@ -123,7 +143,7 @@ void maquinainterpretada (blocodememoria *cache1, blocodememoria *cache2, blocod
                 }
             }
             
-            mudancaDeValor(cache1, cache2, cache3, instrucao[i].end3, ram , cacheHit , cacheMiss , custoTotal, 0);
+            /*mudancaDeValor(cache1, cache2, cache3, instrucao[i].end3, ram , cacheHit , cacheMiss , custoTotal, 0);
             for (int c = 0; c < tamcache1; c++) {
                 if (instrucao[i].end3 == cache1[c].endereco) {
                     cache1[c].conteudo = n+k;
@@ -132,7 +152,10 @@ void maquinainterpretada (blocodememoria *cache1, blocodememoria *cache2, blocod
                 }
             }
             //cache1[eh_trocado(cache1, 1)].conteudo = n + k;
-            
+            */
+           cache1[eh_trocado(cache1, 1)].conteudo = n + k;
+           printf("Soma: %d + %d = %d\n\n",n , k , cache1[eh_trocado(cache1, 1)].conteudo); 
+
         }
         if (instrucao[i].opcode == 1) { //subtracao
             mudancaDeValor(cache1, cache2, cache3, instrucao[i].end1, ram , cacheHit , cacheMiss , custoTotal, 0);
