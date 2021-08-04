@@ -21,6 +21,7 @@ typedef struct {
     int conteudo;
     int refresh;
     int uso;
+    int atualizado;
 } blocodememoria;
 
 void iniciaram (blocodememoria *ram);
@@ -176,6 +177,7 @@ int mudancaDeValor (blocodememoria *cache1, blocodememoria *cache2, blocodememor
             if(cache1[i].endereco == endereco || cache1[i].refresh != 0)
             {
                 cache1[i].uso++;
+                cache1[i].atualizado = 1;
                 *cacheHit = *cacheHit + 1;
                 *custoTotal = *custoTotal + 10; 
                 return cache1[i].conteudo;
@@ -191,6 +193,7 @@ int mudancaDeValor (blocodememoria *cache1, blocodememoria *cache2, blocodememor
            if(cache2[j].endereco == endereco)
            {
                cache2[j].uso++;
+               cache2[j].atualizado = 1;
                blocodememoria aux;
                int enderecotrocado = eh_trocado(cache1, 1);
                for (int i = 0; i < 16; i++) {
@@ -214,6 +217,7 @@ int mudancaDeValor (blocodememoria *cache1, blocodememoria *cache2, blocodememor
            if(cache3[k].endereco == endereco)
            {
                cache3[k].uso++;
+               cache3[k].atualizado = 1;
                blocodememoria aux;
                int enderecotrocado = eh_trocado(cache2, 2);
                for (int i = 0; i < 32; i++) {
