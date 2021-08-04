@@ -50,26 +50,6 @@ int main() {
     instrucao lerinstrucoes[tamdasinstrucoes];
     inicialerinstrucoes(lerinstrucoes);
     maquinainterpretada (cache1, cache2, cache3, lerinstrucoes, ram , &cacheHit , &cacheMiss , &custoTotal);
-
-    for(int i = 0 ; i < tamcache1 ; i++)
-    {
-        printf("Endereço cache1: %d   valor na cache: %d     uso: %d         refresh: %d\n" , cache1[i].endereco , cache1[i].conteudo , cache1[i].uso , cache1[i].refresh);
-    }
-
-    for(int i = 0 ; i < tamcache2 ; i++)
-    {
-        printf("Endereço cache2: %d   valor na cache: %d     uso: %d         refresh: %d\n" , cache2[i].endereco , cache2[i].conteudo , cache2[i].uso , cache2[i].refresh);
-    }
-
-    for(int i = 0 ; i < tamcache3 ; i++)
-    {
-        printf("Endereço cache3: %d   valor na cache: %d     uso: %d         refresh: %d\n" , cache3[i].endereco , cache3[i].conteudo , cache3[i].uso , cache3[i].refresh);
-    }
-
-
-
-
-
     imprimirRelatorio(cacheHit,cacheMiss,custoTotal);
     return 0;
 }
@@ -136,12 +116,14 @@ void maquinainterpretada (blocodememoria *cache1, blocodememoria *cache2, blocod
                     n = cache1[c].conteudo;
                 }
             }
+            printf("|Primeiro Valor na cache1 = %d|\n\n" , n);
             mudancaDeValor(cache1, cache2, cache3, instrucao[i].end2, ram , cacheHit , cacheMiss , custoTotal, 0);
             for (int c = 0; c < tamcache1; c++) {
                 if (instrucao[i].end2 == cache1[c].endereco) {
                     k = cache1[c].conteudo;
                 }
             }
+            printf("|Segundo Valor na cache1 = %d|\n\n" , k);
             
             /*mudancaDeValor(cache1, cache2, cache3, instrucao[i].end3, ram , cacheHit , cacheMiss , custoTotal, 0);
             for (int c = 0; c < tamcache1; c++) {
@@ -164,12 +146,14 @@ void maquinainterpretada (blocodememoria *cache1, blocodememoria *cache2, blocod
                     n = cache1[c].conteudo;
                 }
             }
+            printf("|Primeiro Valor na cache1 = %d|\n\n" , n);
             mudancaDeValor(cache1, cache2, cache3, instrucao[i].end2, ram , cacheHit , cacheMiss , custoTotal, 0);
             for (int c = 0; c < tamcache1; c++) {
                 if (instrucao[i].end2 == cache1[c].endereco) {
                     k = cache1[c].conteudo;
                 }
             }
+            printf("|Segundo Valor na cache1 = %d|\n\n" , k);
 
 
             cache1[eh_trocado(cache1, 1)].conteudo = n - k;
@@ -217,6 +201,7 @@ int mudancaDeValor (blocodememoria *cache1, blocodememoria *cache2, blocodememor
                    }
                }
                *custoTotal = *custoTotal + 20; 
+               printf("|Valor na cache2|  |Movendo valor da cache2 para cache1|\n");
                return mudancaDeValor(cache1,cache2,cache3, endereco,ram , cacheHit , cacheMiss , custoTotal, 1);
            }
        }
@@ -239,6 +224,7 @@ int mudancaDeValor (blocodememoria *cache1, blocodememoria *cache2, blocodememor
                    }
                }
                *custoTotal = *custoTotal + 30; 
+               printf("|Valor na cache3|  |Movendo valor da cache3 para cache2|\n");
                return mudancaDeValor(cache1,cache2,cache3, endereco,ram , cacheHit , cacheMiss , custoTotal, 2);
            }
        }
@@ -263,6 +249,7 @@ int mudancaDeValor (blocodememoria *cache1, blocodememoria *cache2, blocodememor
                *cacheMiss = *cacheMiss + 1;
                *custoTotal = *custoTotal + 1000;
                *cacheHit = *cacheHit - 1; 
+               printf("|Valor na RAM|     |Movendo valor da RAM para cache3|\n");
                return mudancaDeValor(cache1,cache2,cache3, endereco,ram , cacheHit , cacheMiss , custoTotal, 3);
            }
        }
